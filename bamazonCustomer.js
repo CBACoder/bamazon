@@ -1,4 +1,4 @@
-// this app will display items for sale and allow customer to place order if item in stock
+// this simple app will display items for sale and allow customer to place order if item in stock
 
 //import mysql and inquirer modules
 var mysql = require('mysql');
@@ -83,14 +83,18 @@ function askUserForOder(){
     ]).then(function(inquirerResponse) {
         // console.log(inquirerResponse);
         // console.log(inquirerResponse.itemID);
-        
 
         //loop itmes array to check if id entered exists and if not tell user. this piece I will code later.
-
+        let validID = false;
+        for (let j in itemsAvailable){
+            if (itemsAvailable[j].itemid === parseInt(inquirerResponse.itemID)){
+                validID = true; 
+            }
+        }
         // check if no selection restart app
-        if(inquirerResponse.itemID === "" || inquirerResponse.quantity === ""){
-            console.log('A selection is neede !!');
-            startApp();
+        if(!validID || inquirerResponse.itemID === "" || inquirerResponse.quantity === ""){
+            console.log('A valid selection is needed !!');
+            proceed();
         }else{
             var qString = "";
             var totalcost=0;
