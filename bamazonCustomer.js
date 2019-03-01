@@ -65,35 +65,42 @@ function askUserForOder(){
     ]).then(function(inquirerResponse) {
         console.log(inquirerResponse);
         console.log(inquirerResponse.itemID);
-        var qString = "";
-        // query database to check if in stock
-        qString = "SELECT stock_quantity FROM products WHERE item_id ="+parseInt(inquirerResponse.itemID);
-        console.log(qString);
-        connection.query(qString,function(err,results){
-            if(err) throw err;
-            console.log(results);
-            console.log(results[0].stock_quantity);
-            //compare quantity to order and actual stock
-            if(parseInt(inquirerResponse.quantity) > results[0].stock_quantity){
-                console.log('Your order exceeds items in stock.');
-                console.log('Only '+results[0].stock_quantity+' item(s) in stock.');
-                console.log("Your order was unsuccessful");
-                console.log("Please revise your order.");
-            }else{
-                //place order and update stock.
-                qString = "UPDATE products SET stock_quantity = stock_quantity -"+parseInt(inquirerResponse.quantity)+"  WHERE ?"
-                connection.query(qString,
-                [
-                    {
-                        item_id:parseInt(inquirerResponse.itemID)
-                    }
-                ],function(err,results){
-                    if(err) throw err;
-                    console.log("Your order was successful. Thank you");
-                });
-            } 
-            startApp();          
-        });
-        
+        if(inquirerResponse.itemID === "" || inquirerResponse.quantity === ""){
+            console.log('A selection is neede !!');
+            startApp();
+        }else{
+            var qString = "";
+            var totalcost=0;
+            const customerQuantity = parseInt(inquirerResponse.quantity);
+            // query database to check if in stock
+            qString = "SELECT stock_quantity,price FROM products WHERE item_id ="+parseInt(inquirerResponse.itemID);
+            
+            connection.query(qString,function(err,results){
+                if(err) throw err;
+                console.log(results);
+                console.log(results[0].stock_quantity);
+                //compare quantity to order and actual stock
+                if(customerQuantity > results[0].stock_quantity){
+                    console.log('Your order exceeds items in stock.');
+                    console.log('Only '+results[0].stock_quantity+' item(s) in stock.');
+                    console.log("Your order was unsuccessful");
+                    console.log("Please revise your order.");
+                }else{
+                    //place order and update stock.
+                    totalcost = results[0].price * customerQuantity;
+                    qString = "UPDATE products SET stock_quantity = stock_quantity -"+customerQuantity+"  WHERE ?"
+                    connection.query(qString,
+                    [
+                        {
+                            item_id:parseInt(inquirerResponse.itemID)
+                        }
+                    ],function(err,results){
+                        if(err) throw err;
+                        console.log("Your order was successful. \nYour order total is: "+"$"+totalcost+" \nThank you");
+                    });
+                } 
+                startApp();         
+            });
+        }
     });
 }
