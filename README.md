@@ -23,3 +23,5 @@ a list of items will be displayed.
 Follow prompts to place your order.
 
 See in the images folder the screen shots of the flow.
+
+see video on url <https://drive.google.com/file/d/1mbkER_UoXfPQNgX2Bf31rJYq3QBQ7tk8/view?usp=sharing>
