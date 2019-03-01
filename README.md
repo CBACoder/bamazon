@@ -21,3 +21,5 @@ in the next phase, manager view and supervisor views will be added to make the a
 Start the app from a git bash console by typing *node bamazonCustomer.js*
 a list of items will be displayed.
 Follow prompts to place your order.
+
+See in the images folder the screen shots of the flow.
