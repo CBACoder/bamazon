@@ -22,6 +22,29 @@ Start the app from a git bash console by typing *node bamazonCustomer.js*
 a list of items will be displayed.
 Follow prompts to place your order.
 
-See in the images folder the screen shots of the flow.
+Below you can view a quick start video of the app and the screen flow images are below the video link.
 
-see video on url <https://drive.google.com/file/d/1mbkER_UoXfPQNgX2Bf31rJYq3QBQ7tk8/view?usp=sharing>
+Link to the tutorial video <https://drive.google.com/file/d/1mbkER_UoXfPQNgX2Bf31rJYq3QBQ7tk8/view?usp=sharing>
+
+
+
+See images of the application flow
+ ![place an order](/images/img1.gif "bamazon app")
+
+ ![place an order](/images/img2.gif "bamazon app")
+
+ ![place an order](/images/img3.gif "bamazon app")
+
+ ![place an order](/images/img4.gif "bamazon app")
+
+ ![place an order](/images/img5.gif "bamazon app")
+
+ ![place an order](/images/img6.gif "bamazon app")
+
+ ![place an order](/images/img7.gif "bamazon app")
+
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="images/img1.gif">
+    <source src="images/bamazonapp.webm" type="video/webm">
+  </video>
+</figure>
