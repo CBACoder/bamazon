@@ -5,6 +5,8 @@ var mysql = require('mysql');
 var inquire = require('inquirer');
 var Table = require('cli-table');
 
+// array to hold result set
+let itemsAvailable = [];
 //create a connection to the database
 var connection = mysql.createConnection({
     host:"localhost",
@@ -46,7 +48,6 @@ function startApp(){
             ])
         }
         // add items into an array
-        let itemsAvailable = [];
         for( let i in results){
             itemsAvailable.push({
                 itemid:results[i].item_id,
@@ -82,6 +83,10 @@ function askUserForOder(){
     ]).then(function(inquirerResponse) {
         // console.log(inquirerResponse);
         // console.log(inquirerResponse.itemID);
+        
+
+        //loop itmes array to check if id entered exists and if not tell user. this piece I will code later.
+
         // check if no selection restart app
         if(inquirerResponse.itemID === "" || inquirerResponse.quantity === ""){
             console.log('A selection is neede !!');
